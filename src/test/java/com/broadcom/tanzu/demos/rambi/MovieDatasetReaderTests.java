@@ -17,7 +17,6 @@
 package com.broadcom.tanzu.demos.rambi;
 
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(properties = {
+        "spring.shell.interactive.enabled=false",
+        "spring.shell.noninteractive.enabled=false",
+        "spring.shell.script.enabled=false"
+})
 @Testcontainers
 @EnableAutoConfiguration(exclude = {AzureOpenAiAutoConfiguration.class, PgVectorStoreAutoConfiguration.class})
 class MovieDatasetReaderTests {

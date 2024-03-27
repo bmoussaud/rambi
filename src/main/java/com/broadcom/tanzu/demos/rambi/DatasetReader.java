@@ -16,14 +16,9 @@
 
 package com.broadcom.tanzu.demos.rambi;
 
-import org.springframework.ai.autoconfigure.azure.openai.AzureOpenAiAutoConfiguration;
-import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.io.IOException;
+import java.io.InputStream;
 
-@SpringBootApplication(exclude = {AzureOpenAiAutoConfiguration.class, PgVectorStoreAutoConfiguration.class})
-public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+interface DatasetReader {
+    Dataset read(InputStream in) throws IOException;
 }
