@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-class CSVDatasetReader implements DatasetReader {
+class CsvDatasetReader implements DatasetReader {
     @Override
     public Dataset read(InputStream in) throws IOException {
         final List<Movie> movies = new ArrayList<>();
