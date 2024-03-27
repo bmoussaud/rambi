@@ -41,7 +41,7 @@ class JdbcDatasetStore implements DatasetStore {
 
     @Override
     public void clear() {
-        logger.info("Deleting movies");
+        logger.debug("Deleting movies");
         jdbc.update("DELETE FROM movies");
     }
 }
