@@ -16,12 +16,13 @@
 
 package com.broadcom.tanzu.demos.rambi;
 
-import org.springframework.ai.autoconfigure.azure.openai.AzureOpenAiAutoConfiguration;
 import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@SpringBootApplication(exclude = {AzureOpenAiAutoConfiguration.class, PgVectorStoreAutoConfiguration.class})
+@SpringBootApplication(exclude = {PgVectorStoreAutoConfiguration.class})
+@EnableConfigurationProperties(RambiConfiguration.class)
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

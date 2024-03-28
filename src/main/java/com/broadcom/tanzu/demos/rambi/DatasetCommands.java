@@ -18,15 +18,10 @@ package com.broadcom.tanzu.demos.rambi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-@ShellComponent
 public class DatasetCommands {
     private final Logger logger = LoggerFactory.getLogger(DatasetCommands.class);
     private final DatasetReader reader;
@@ -37,9 +32,7 @@ public class DatasetCommands {
         this.store = store;
     }
 
-    @ShellMethod(key = "import")
-    String importDataset(
-            @ShellOption(defaultValue = "file") File file) throws IOException {
+    public String importDataset( File file) throws IOException {
         final var buf = new StringBuffer();
         final var dataset = reader.read(new FileInputStream(file));
         for (final var movie : dataset.movies()) {
@@ -49,7 +42,6 @@ public class DatasetCommands {
         return String.format("Inserted %d movies", dataset.movies().size());
     }
 
-    @ShellMethod(key = "reset")
     String resetDataset() {
         store.clear();
         return "Cleared datastore";

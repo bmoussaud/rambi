@@ -26,5 +26,15 @@ Copyright &copy; 2024 [Broadcom, Inc. or its affiliates](https://broadcom.com).
 
 This project is licensed under the [Apache Software License version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
+```
+curl -X POST http://localhost:8080/generate/image -H 'Content-Type: application/json' -d '{"generatedMovie":{"title":"Rambi","plot":"The story of a young deer growing up in the forest. The pet defends the forest with an yellow umbrella and wears the red headband"}}'
+```
 
-curl -X POST http://localhost:8080/generate/image -H 'Content-Type: application/json' -d '{"generatedMovie":{"title":"Rambi","plot":"The story of a young deer growing up in the forest. The pet defends the forest with an yellow umbrella"}}'
+
+mvn spring-boot:run -Dspring-boot.run.profiles=fake
+
+## Dataset
+
+https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies
+URL https://image.tmdb.org/t/p/w500/wV9e2y4myJ4KMFsyFfWYcUOawyK.jpg
+https://developer.themoviedb.org/docs/image-basics

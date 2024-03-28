@@ -6,26 +6,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @SpringBootTest
 public class SpringAIDalle2ImageGeneratorServiceTest {
 
     private static final Logger logger = LoggerFactory.getLogger(SpringAIDalle2ImageGeneratorServiceTest.class);
 
     @Autowired
-    SpringAIDalle2ImageGeneratorService service;
+    AzureOpenAIImageGeneratorService service;
 
     @Test
     void testGenerate() {
-
-        Movie generated = new Movie();
-        generated.setTitle("Rambi");
+        GeneratedRambiMovie generated = new GeneratedRambiMovie();
+        generated.setTitle("Azure Dalle3 Error");
         generated.setPlot(
-                "The story of a young deer growing up in the forest. The pet defends the forest with an yellow umbrella");
-        ImageGeneratorRequest request = new ImageGeneratorRequest();
-        logger.info("request {}", request);
-        request.setGeneratedMovie(generated);
-        var response = service.generate(request);
-        logger.info("response {}", response);
-        logger.info("movie {}", generated);
+                "In the hilarious new comedy, Dalle is angry: it stops generating new images unless you provide delicious chocolate cookies");
+        logger.info("request {}", generated);
+        var response = service.generate(generated);
+        logger.info("generated movie {}", response);
+        assertTrue(response.getPosterUrl().startsWith("http"));
     }
 }
