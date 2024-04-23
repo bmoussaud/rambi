@@ -1,6 +1,6 @@
 package com.broadcom.tanzu.demos.rambi.pitch;
 
-import com.broadcom.tanzu.demos.rambi.image.RambiMovie;
+import com.broadcom.tanzu.demos.rambi.RambiMovie;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

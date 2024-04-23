@@ -1,5 +1,6 @@
 package com.broadcom.tanzu.demos.rambi.image;
 
+import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
 import com.broadcom.tanzu.demos.rambi.ImageGeneratorService;
 import com.broadcom.tanzu.demos.rambi.RambiConfiguration;
 

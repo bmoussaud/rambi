@@ -1,8 +1,8 @@
 package com.broadcom.tanzu.demos.rambi.pitch;
 
 import com.broadcom.tanzu.demos.rambi.PitchGeneratorService;
-import com.broadcom.tanzu.demos.rambi.image.GeneratedRambiMovie;
-import com.broadcom.tanzu.demos.rambi.image.RambiMovie;
+import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
+import com.broadcom.tanzu.demos.rambi.RambiMovie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.ChatClient;

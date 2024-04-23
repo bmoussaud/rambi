@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi.image;
+package com.broadcom.tanzu.demos.rambi;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -2,8 +2,6 @@ package com.broadcom.tanzu.demos.rambi;
 
 import java.util.List;
 
-import com.broadcom.tanzu.demos.rambi.image.RambiMovie;
-
 public class RambiModel {
 
     String movie1Title;

@@ -1,6 +1,5 @@
 package com.broadcom.tanzu.demos.rambi;
 
-import com.broadcom.tanzu.demos.rambi.image.RambiMovie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

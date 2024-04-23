@@ -1,8 +1,8 @@
 package com.broadcom.tanzu.demos.rambi.pitch;
 
 import com.broadcom.tanzu.demos.rambi.PitchGeneratorService;
-import com.broadcom.tanzu.demos.rambi.image.GeneratedRambiMovie;
-import com.broadcom.tanzu.demos.rambi.image.RambiMovie;
+import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
+import com.broadcom.tanzu.demos.rambi.RambiMovie;
 
 import java.util.Map;
 
