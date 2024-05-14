@@ -30,7 +30,7 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
     @Autowired
     private ImageClient imageClient;
 
-    @Value("classpath:/movie-image-prompt-3.st")
+    @Value("classpath:/movie-image-prompt-2.st")
     private Resource moviePromptRes;
 
     @Override
