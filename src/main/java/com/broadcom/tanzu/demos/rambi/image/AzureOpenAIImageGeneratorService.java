@@ -57,13 +57,7 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
 
             for (ImageGeneration result : response.getResults()) {
                 logger.info("URL {}", result.getOutput().getUrl());
-                movie.setPosterUrl(result.getOutput().getUrl());
-                AzureOpenAiImageGenerationMetadata imageGenerationMetadata = (AzureOpenAiImageGenerationMetadata) result
-                        .getMetadata();
-                var revisedPrompt = imageGenerationMetadata.getRevisedPrompt();
-                logger.info("Movie {}", movie);
-                logger.info("Revised Prompt {}", revisedPrompt);
-                movie.setRevisedImageGenerationPrompt("```" + revisedPrompt + "```");
+                movie.setPosterUrl(result.getOutput().getUrl());                
             }
             return movie;
         } catch (Exception e) {
