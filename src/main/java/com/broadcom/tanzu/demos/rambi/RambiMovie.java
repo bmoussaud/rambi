@@ -6,6 +6,7 @@ public class RambiMovie {
     private String title;
     private String plot;
     private String posterUrl;
+    private String posterUrl2;
 
     public RambiMovie() {
     }
@@ -52,9 +53,18 @@ public class RambiMovie {
         this.genre = genre;
     }
 
+    public String getPosterUrl2() {
+        return posterUrl2;
+    }
+
+    public void setPosterUrl2(String posterUrl2) {
+        this.posterUrl2 = posterUrl2;
+    }
+
     @Override
     public String toString() {
-        return "RambiMovie [genre=" + genre + ", title=" + title + ", plot=" + plot + ", posterUrl=" + posterUrl + "]";
+        return "RambiMovie [genre=" + genre + ", title=" + title + ", plot=" + plot + ", posterUrl=" + posterUrl
+                + ", posterUrl2=" + posterUrl2 + "]";
     }
 
 }

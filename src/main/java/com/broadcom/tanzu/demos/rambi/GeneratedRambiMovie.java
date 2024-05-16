@@ -17,8 +17,11 @@ public class GeneratedRambiMovie extends RambiMovie {
     private String revisedImageGenerationPrompt;
 
     private String posterDescription;
-    
-    public GeneratedRambiMovie() {}
+
+    private String posterDescriptionUsingTheTwoUploadedImages;
+
+    public GeneratedRambiMovie() {
+    }
 
     public GeneratedRambiMovie(String title, String plot) {
         super(title, plot);
@@ -64,6 +67,12 @@ public class GeneratedRambiMovie extends RambiMovie {
         this.posterDescription = posterDescription;
     }
 
-    
+    public String getPosterDescriptionUsingTheTwoUploadedImages() {
+        return posterDescriptionUsingTheTwoUploadedImages;
+    }
+
+    public void setPosterDescriptionUsingTheTwoUploadedImages(String posterDescriptionUsingTheTwoUploadedImages) {
+        this.posterDescriptionUsingTheTwoUploadedImages = posterDescriptionUsingTheTwoUploadedImages;
+    }
 
 }

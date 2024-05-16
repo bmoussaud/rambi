@@ -5,7 +5,7 @@ import com.broadcom.tanzu.demos.rambi.ImageGeneratorService;
 import com.broadcom.tanzu.demos.rambi.RambiConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.azure.openai.metadata.AzureOpenAiImageGenerationMetadata;
+//import org.springframework.ai.azure.openai.metadata.AzureOpenAiImageGenerationMetadata;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.image.ImageClient;
 import org.springframework.ai.image.ImageGeneration;
@@ -30,7 +30,7 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
     @Autowired
     private ImageClient imageClient;
 
-    @Value("classpath:/movie-image-prompt-2.st")
+    @Value("classpath:/movie-image-prompt-3.st")
     private Resource moviePromptRes;
 
     @Override
