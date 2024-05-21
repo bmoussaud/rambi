@@ -14,7 +14,7 @@ public class TMDBMovieService implements MovieService {
 
     private static final Logger logger = LoggerFactory.getLogger(TMDBMovieService.class);
 
-    private String uriBase = "https://api.themoviedb.org/3/";
+    private String uriBase = "https://api.themoviedb.org/3";
     
     @Autowired
     private RambiConfiguration configuration;
