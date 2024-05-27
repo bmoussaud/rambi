@@ -18,8 +18,6 @@ public class GeneratedRambiMovie extends RambiMovie {
 
     private String posterDescription;
 
-    private String posterDescriptionUsingTheTwoUploadedImages;
-
     public GeneratedRambiMovie() {
     }
 
@@ -65,14 +63,6 @@ public class GeneratedRambiMovie extends RambiMovie {
 
     public void setPosterDescription(String posterDescription) {
         this.posterDescription = posterDescription;
-    }
-
-    public String getPosterDescriptionUsingTheTwoUploadedImages() {
-        return posterDescriptionUsingTheTwoUploadedImages;
-    }
-
-    public void setPosterDescriptionUsingTheTwoUploadedImages(String posterDescriptionUsingTheTwoUploadedImages) {
-        this.posterDescriptionUsingTheTwoUploadedImages = posterDescriptionUsingTheTwoUploadedImages;
     }
 
 }

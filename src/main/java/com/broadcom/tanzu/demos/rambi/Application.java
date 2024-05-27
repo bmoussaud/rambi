@@ -16,14 +16,30 @@
 
 package com.broadcom.tanzu.demos.rambi;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication(exclude = {PgVectorStoreAutoConfiguration.class})
-@EnableConfigurationProperties(RambiConfiguration.class)
+
+@SpringBootApplication(exclude = { PgVectorStoreAutoConfiguration.class })
+@EnableConfigurationProperties({ RambiConfiguration.class })
 public class Application {
+
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
+
+    @Bean
+    CommandLineRunner onStart(@Value("${rambi.chatProvider}") String param) {
+        return (args) -> {
+            logger.error("CHAT PROVIDER {}", param);
+        };
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

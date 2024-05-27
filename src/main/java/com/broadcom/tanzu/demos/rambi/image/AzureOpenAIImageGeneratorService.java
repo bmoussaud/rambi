@@ -5,13 +5,11 @@ import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
 import com.broadcom.tanzu.demos.rambi.ImageGeneratorService;
 import com.broadcom.tanzu.demos.rambi.RambiConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.azure.openai.AzureOpenAiImageClient;
+import org.springframework.ai.azure.openai.AzureOpenAiImageModel;
 import org.springframework.ai.azure.openai.metadata.AzureOpenAiImageGenerationMetadata;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 
@@ -22,7 +20,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.ErrorResponse;
 
 import java.util.Map;
 
@@ -36,7 +33,7 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
     private RambiConfiguration configuration;
 
     @Autowired
-    private AzureOpenAiImageClient imageClient;
+    private AzureOpenAiImageModel imageModel;
 
     @Value("classpath:/movie-image-prompt-3.st")
     private Resource moviePromptRes;
@@ -58,9 +55,9 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
         }
 
         try {
-            var response = this.imageClient.call(prompt);
+            var response = this.imageModel.call(prompt);
             var metadata = response.getMetadata();
-            logger.info("metadata created {}", metadata.created());
+            logger.info("metadata created {}", metadata.getCreated());
 
             for (ImageGeneration result : response.getResults()) {
                 logger.info("URL {}", result.getOutput().getUrl());
@@ -68,7 +65,6 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
                 AzureOpenAiImageGenerationMetadata imageGenerationMetadata = (AzureOpenAiImageGenerationMetadata) result
                         .getMetadata();
                 var revisedPrompt = imageGenerationMetadata.getRevisedPrompt();
-                logger.info("Movie {}", movie);
                 logger.info("Revised Prompt {}", revisedPrompt);
                 movie.setRevisedImageGenerationPrompt("```" + revisedPrompt + "```");
             }

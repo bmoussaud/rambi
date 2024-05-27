@@ -7,17 +7,19 @@ Using the titles, plots and genre as inspiration, generate the following:
 ##### Movie 1
 * Title: {Title1}
 * Plot: {Plot1}
+* Poster Description: {Description1}
 
 ##### Movie 2
 * Title: {Title2}
 * Plot: {Plot2}
+* Poster Description: {Description2}
 
 ##### Additional Information
 
 * Target Genre: {genre} 
 
 Use the details below to generate the new movie title and plot.
-Use the description of the images to generate the posterDescription.
+Use the description of the posters to generate the new posterDescription.
 Take care of not generating any violence.
 
 {format}
