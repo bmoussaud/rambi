@@ -117,7 +117,8 @@
                             <div class="card-body">                               
                                 <h5 class="card-title">Pitch Generation Prompt</h5>
                                 <p class="card-text">
-                                    <md-block th:text="*{generatedMovie?.pitchGenerationPrompt}"/>                                    
+                                    <md-block th:text="*{generatedMovie?.pitchGenerationPrompt}"/>      
+                                    <md-block th:text="*{generatedMovie?.chatServiceConfiguration}"/>                                    
                                 </p>
                             </div>
                         </div>                        

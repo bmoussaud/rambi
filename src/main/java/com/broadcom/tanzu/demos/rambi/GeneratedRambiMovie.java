@@ -18,6 +18,9 @@ public class GeneratedRambiMovie extends RambiMovie {
 
     private String posterDescription;
 
+    @JsonIgnore
+    private String chatServiceConfiguration;
+
     public GeneratedRambiMovie() {
     }
 
@@ -64,5 +67,15 @@ public class GeneratedRambiMovie extends RambiMovie {
     public void setPosterDescription(String posterDescription) {
         this.posterDescription = posterDescription;
     }
+
+    public String getChatServiceConfiguration() {
+        return chatServiceConfiguration;
+    }
+
+    public void setChatServiceConfiguration(String chatServiceConfiguration) {
+        this.chatServiceConfiguration = chatServiceConfiguration;
+    }
+
+
 
 }

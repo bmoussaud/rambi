@@ -1,2 +1,5 @@
-Create a movie poster for a `{genre}` film titled `{title}`.{description}
+Create a movie poster for a `{genre}` movie.
+The movie is title is {title}.
+{description}.
+Replace any commercial or copyrighted items.
 

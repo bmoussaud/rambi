@@ -14,6 +14,6 @@ public class OpenAiConfiguration {
     @Bean
     @Primary
     ChatClient.Builder myChatClientProvider(OpenAiChatModel model) {
-         return ChatClient.builder(model);
+        return ChatClient.builder(model);
     }
 }

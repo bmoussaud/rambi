@@ -25,13 +25,13 @@ public class AzureOpenAIPitchGeneratorService implements PitchGeneratorService {
 
     private static final Logger logger = LoggerFactory.getLogger(AzureOpenAIPitchGeneratorService.class);
 
-    private final ChatClient aiClient;
+    private final ChatClient chatClient;
 
     @Value("classpath:/movie-pitch-prompt-multi-modal.st")
     private Resource moviePromptRes;
 
     public AzureOpenAIPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder) {
-        this.aiClient = chatClientBuilder.build();
+        this.chatClient = chatClientBuilder.build();
     }
 
     record MovieDescription(
@@ -47,7 +47,7 @@ public class AzureOpenAIPitchGeneratorService implements PitchGeneratorService {
         logger.info("movie 1 poster is {} ", first.getPosterUrl());
         logger.info("movie 2 poster is {} ", second.getPosterUrl());
 
-        MovieDescription moviePosterDescription = aiClient.prompt()
+        MovieDescription moviePosterDescription = chatClient.prompt()
                 .user(p -> {
                     try {
                         p.text("Explain what do you see on these two movie posters")
@@ -75,13 +75,15 @@ public class AzureOpenAIPitchGeneratorService implements PitchGeneratorService {
         PromptTemplate moviePrompt = new PromptTemplate(moviePromptRes, model);
         logger.info("prompt {}", moviePrompt.render());
 
-        var movie = aiClient
+        var movie = chatClient
                 .prompt()
                 .user(p -> p.text(moviePromptRes).params(model)).call()
                 .entity(GeneratedRambiMovie.class);
 
         logger.info("Movie:" + movie);
         movie.setPitchGenerationPrompt(moviePrompt.render());
+
+        movie.setChatServiceConfiguration("Class " + chatClient.getClass());
 
         return movie;
 
