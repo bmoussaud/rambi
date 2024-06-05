@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

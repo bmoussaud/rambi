@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.dataset;
 
 import java.util.List;
 

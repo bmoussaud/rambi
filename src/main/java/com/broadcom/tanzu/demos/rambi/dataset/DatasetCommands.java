@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.dataset;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

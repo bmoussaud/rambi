@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.configuration;
 
 import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.chat.client.ChatClient;

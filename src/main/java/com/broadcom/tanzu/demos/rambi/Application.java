@@ -16,6 +16,7 @@
 
 package com.broadcom.tanzu.demos.rambi;
 
+import com.broadcom.tanzu.demos.rambi.configuration.RambiConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;

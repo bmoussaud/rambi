@@ -46,57 +46,104 @@
         </div> 
        
 
-        <div id="display-selected-movies" th:if="${rambiModel.movie1 != null && rambiModel.movie2 != null }">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="card-group">
-                            <div class="card" th:if="${rambiModel.movie1 != null}">
-                                <img class="card-img-top" th:src="*{movie1?.posterUrl}">                                    
-                                <div class="card-body">
-                                    <p class="card-text"><small class="text-muted">Movie #1</small></p>   
-                                    <h5 class="card-title" th:text="*{movie1?.title}"/>   
-                                    <input type="hidden" th:field="*{movie1.posterUrl}" id="movie2Poster">
-                                   
-                                    <input type="hidden" th:field="*{movie1.title}" id="movie1Title">
-                                    <input type="hidden" th:field="*{movie1.plot}" id="movie1Plot">                                                                                                    
-                                    <p class="card-text" th:text="*{movie1?.plot}"/>
-                                    
-                                </div>
+        <div class="container" th:if="${rambiModel.movie1 != null && rambiModel.movie2 != null }">
+           
+                <div class="row"  id="display-selected-movies" >                   
+                    <div class="card-group">
+                        <div id="movie1" class="card" th:if="${rambiModel.movie1 != null}">
+                            <img class="card-img-top" th:src="*{movie1?.posterUrl}">                                    
+                            <div class="card-body">
+                                <p class="card-text"><small class="text-muted">Movie #1</small></p>   
+                                <h5 class="card-title" th:text="*{movie1?.title}"/>   
+                                <input type="hidden" th:field="*{movie1.posterUrl}" id="movie2Poster">
+                                
+                                <input type="hidden" th:field="*{movie1.title}" id="movie1Title">
+                                <input type="hidden" th:field="*{movie1.plot}" id="movie1Plot">                                                                                                    
+                                <p class="card-text" th:text="*{movie1?.plot}"/>
+                                
                             </div>
-                            <div class="card" th:if="${rambiModel.movie2 != null}">
-                                <img class="card-img-top" th:src="*{movie2?.posterUrl}">                                    
-                                <div class="card-body">
-                                    <p class="card-text"><small class="text-muted">Movie #2</small></p> 
-                                    <h5 class="card-title" th:text="*{movie2?.title}"/>  
-                                    <input type="hidden" th:field="*{movie2.posterUrl}" id="movie2Poster">
-                                         
-                                    <input type="hidden" th:field="*{movie2.title}" id="movie2Title">                                                                    
-                                    <input type="hidden" th:field="*{movie2.plot}" id="movie2Plot">                                                                                                
-                                    <p class="card-text" th:text="*{movie2?.plot}"/>
-                                    
-                                </div>
+                        </div>
+                        <div id="movie2" class="card" th:if="${rambiModel.movie2 != null}">
+                            <img class="card-img-top" th:src="*{movie2?.posterUrl}">                                    
+                            <div class="card-body">
+                                <p class="card-text"><small class="text-muted">Movie #2</small></p> 
+                                <h5 class="card-title" th:text="*{movie2?.title}"/>  
+                                <input type="hidden" th:field="*{movie2.posterUrl}" id="movie2Poster">
+                                        
+                                <input type="hidden" th:field="*{movie2.title}" id="movie2Title">                                                                    
+                                <input type="hidden" th:field="*{movie2.plot}" id="movie2Plot">                                                                                                
+                                <p class="card-text" th:text="*{movie2?.plot}"/>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <div clas="row">
-                    <select class="form-select" aria-label="Genre" th:field="*{genre}">
-                        <option th:each="g:*{defaultGenres}" th:value="${g}" th:text="${g}" value="*{genre}"/>                                                          
-                    </select>
-                    <button class="btn btn-primary" 
-                            type="submit" 
-                            id="btn-trigger-aigenerate-movie" 
-                            th:hx-post="@{/movie/aigenerate}" 
-                            hx-target="#movies">
-                        Generate
-                        <span class="htmx-indicator spinner-border spinner-border-sm" role="status"
-                              aria-hidden="true"></span>
-                    </button>
+
+                <div class="row" id="genre">
+                    <div class="col-8">     
+                        <select class="form-select" aria-label="Genre" th:field="*{genre}">
+                            <option th:each="g:*{defaultGenres}" th:value="${g}" th:text="${g}" value="*{genre}"/>                                                          
+                        </select>
+                    </div>
+                    <div class="col-4" id="submit">
+                        <button class="btn btn-primary" 
+                                type="submit" 
+                                id="btn-trigger-aigenerate-movie" 
+                                th:hx-post="@{/movie/aigenerate}" 
+                                hx-target="#movies">
+                            Generate
+                            <span class="htmx-indicator spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                        </button>
                 </div>
+            </div>
+
+         
+            
+
+            <div class="cxxxxxontainer" id="prompts" th:if="${rambiModel.generatedMovie != null}" >            
+                <div class="row" id="pitch-row">
+                    <div class="col-sm">
+                        <div class="card">                           
+                            <div class="card-body" id="pitch-prompt">                               
+                                <h5 class="card-title">Pitch Generation Prompt</h5>
+                                <p class="card-text">
+                                    <md-block th:text="*{generatedMovie?.pitchGenerationPrompt}"/>      
+                                    <md-block th:text="*{generatedMovie?.chatServiceConfiguration}"/>                                    
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="row"  id="image-row">
+                    <div class="col-sm" id="image-prompt">
+                        <div class="card">                           
+                            <div class="card-body">                               
+                                <h5 class="card-title">Image Generation Prompt</h5>
+                                <p class="card-text">                                    
+                                    <md-block th:text="*{generatedMovie?.imageGenerationPrompt}"/>         
+                                </p>
+                            </div>
+                        </div>                                            
+                    </div>
+
+                    <div class="col-sm" id="revised-image-prompt">
+                        <div class="card">                           
+                            <div class="card-body">                               
+                                <h5 class="card-title">Revised Image Generation Prompt</h5>
+                                <p class="card-text">
+                                    <md-block th:text="*{generatedMovie?.revisedImageGenerationPrompt}"/>                                       
+                                </p>
+                            </div>
+                        </div>                                            
+                    </div>
+                </div>
+            </div>    
+
+            <div class="container" id="generated-movie" th:if="${rambiModel.generatedMovie != null}">
                 <div clas="row">
                     <div class="col-sm">
-                        <div id="display-aigenerated-movie" th:if="${rambiModel.generatedMovie != null}">
+                        <div id="display-aigenerated-movie" >
                             <div class="card">
                                 <img class="card-img-top" th:src="*{generatedMovie.posterUrl}">
                                 <div class="card-body">
@@ -110,42 +157,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="container">            
-                <div class="row" th:if="${rambiModel.generatedMovie != null}">
-                    <div class="col-sm">
-                        <div class="card">                           
-                            <div class="card-body">                               
-                                <h5 class="card-title">Pitch Generation Prompt</h5>
-                                <p class="card-text">
-                                    <md-block th:text="*{generatedMovie?.pitchGenerationPrompt}"/>      
-                                    <md-block th:text="*{generatedMovie?.chatServiceConfiguration}"/>                                    
-                                </p>
-                            </div>
-                        </div>                        
-                    </div>
-                    <div class="col-sm">
-                        <div class="card">                           
-                            <div class="card-body">                               
-                                <h5 class="card-title">Image Generation Prompt</h5>
-                                <p class="card-text">                                    
-                                    <md-block th:text="*{generatedMovie?.imageGenerationPrompt}"/>         
-                                </p>
-                            </div>
-                        </div>                                            
-                    </div>
 
-                    <div class="col-sm">
-                        <div class="card">                           
-                            <div class="card-body">                               
-                                <h5 class="card-title">Revised Image Generation Prompt</h5>
-                                <p class="card-text">
-                                    <md-block th:text="*{generatedMovie?.revisedImageGenerationPrompt}"/>                                       
-                                </p>
-                            </div>
-                        </div>                                            
-                    </div>
-                </div>
-            </div>    
         </div>        
     </form>
 </section>

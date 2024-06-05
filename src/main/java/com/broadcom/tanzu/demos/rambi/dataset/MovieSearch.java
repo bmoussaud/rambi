@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.dataset;
 
 public class MovieSearch {
 

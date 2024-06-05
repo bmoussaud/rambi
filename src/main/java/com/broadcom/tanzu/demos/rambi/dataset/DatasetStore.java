@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.broadcom.tanzu.demos.rambi;
+package com.broadcom.tanzu.demos.rambi.dataset;
 
-import java.util.List;
+interface DatasetStore {
+    void save(Dataset dataset);
 
-record Dataset(
-        List<Movie> movies
-) {
+    void clear();
 }
