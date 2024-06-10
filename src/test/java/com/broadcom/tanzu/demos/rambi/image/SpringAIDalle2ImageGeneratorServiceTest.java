@@ -1,5 +1,6 @@
 package com.broadcom.tanzu.demos.rambi.image;
 
+import com.broadcom.tanzu.demos.rambi.AzureOpenAIImageGeneratorService;
 import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

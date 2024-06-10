@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi.image;
+package com.broadcom.tanzu.demos.rambi.fake;
 
 import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
 import com.broadcom.tanzu.demos.rambi.ImageGeneratorService;

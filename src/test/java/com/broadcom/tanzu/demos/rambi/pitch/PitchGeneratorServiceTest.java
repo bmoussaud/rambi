@@ -1,6 +1,7 @@
 package com.broadcom.tanzu.demos.rambi.pitch;
 
 import com.broadcom.tanzu.demos.rambi.RambiMovie;
+import com.broadcom.tanzu.demos.rambi.ChatClientPitchGeneratorService;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ class PitchGeneratorServiceTest {
     private static final Logger logger = LoggerFactory.getLogger(PitchGeneratorServiceTest.class);
 
     @Autowired
-    AzureOpenAIPitchGeneratorService service;
+    ChatClientPitchGeneratorService service;
 
 
     @Test

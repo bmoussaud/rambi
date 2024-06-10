@@ -1,8 +1,6 @@
-package com.broadcom.tanzu.demos.rambi.image;
+package com.broadcom.tanzu.demos.rambi;
 
 import com.azure.core.exception.HttpResponseException;
-import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
-import com.broadcom.tanzu.demos.rambi.ImageGeneratorService;
 import com.broadcom.tanzu.demos.rambi.configuration.RambiConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;

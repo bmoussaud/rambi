@@ -1,4 +1,4 @@
-package com.broadcom.tanzu.demos.rambi.pitch;
+package com.broadcom.tanzu.demos.rambi.fake;
 
 import com.broadcom.tanzu.demos.rambi.PitchGeneratorService;
 import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
@@ -6,6 +6,7 @@ import com.broadcom.tanzu.demos.rambi.RambiMovie;
 
 import java.util.Map;
 
+import com.broadcom.tanzu.demos.rambi.ChatClientPitchGeneratorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 @Profile("fake")
 public class FakePitchGeneratorService implements PitchGeneratorService {
 
-    private static final Logger logger = LoggerFactory.getLogger(AzureOpenAIPitchGeneratorService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChatClientPitchGeneratorService.class);
 
     @Value("classpath:/movie-pitch-prompt.st")
     private Resource moviePromptRes;

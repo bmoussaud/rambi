@@ -1,16 +1,13 @@
-package com.broadcom.tanzu.demos.rambi.pitch;
+package com.broadcom.tanzu.demos.rambi;
 
 import java.net.URI;
 import java.util.Map;
-import java.net.URL;
 
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.RuntimeCryptoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.converter.BeanOutputConverter;
-import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -18,23 +15,18 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
 
-import com.broadcom.tanzu.demos.rambi.GeneratedRambiMovie;
-import com.broadcom.tanzu.demos.rambi.PitchGeneratorService;
-import com.broadcom.tanzu.demos.rambi.RambiMovie;
-import com.broadcom.tanzu.demos.rambi.pitch.AzureOpenAIPitchGeneratorService.MovieDescription;
-
 @Service
 @Profile("!fake")
-public class AzureOpenAIPitchGeneratorService implements PitchGeneratorService {
+public class ChatClientPitchGeneratorService implements PitchGeneratorService {
 
-    private static final Logger logger = LoggerFactory.getLogger(AzureOpenAIPitchGeneratorService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChatClientPitchGeneratorService.class);
 
     private final ChatClient chatClient;
 
     @Value("classpath:/movie-pitch-prompt-multi-modal.st")
     private Resource moviePromptRes;
 
-    public AzureOpenAIPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder) {
+    public ChatClientPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder) {
         this.chatClient = chatClientBuilder.build();
     }
 
