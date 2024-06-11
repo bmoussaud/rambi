@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import java.util.Map;
+
 @Configuration
 @ConditionalOnProperty(prefix = "rambi", name = "chatProvider", havingValue = "openai")
 public class OpenAiConfiguration {
@@ -20,5 +22,13 @@ public class OpenAiConfiguration {
     @Bean
     boolean pitchServiceLoadImages() {
         return false;
+    }
+
+    @Bean
+    Map<String, String> pitchServiceLLMConfiguration(OpenAiChatModel model) {
+        return Map.of("model", "OpenAi",
+                "provider", "OpenAI",
+                "temperature", model.getDefaultOptions().getTemperature().toString()
+        );
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.util.MimeTypeUtils;
 
 import java.net.URI;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Profile("!fake")
@@ -24,15 +25,18 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
     private static final Logger logger = LoggerFactory.getLogger(ChatClientPitchGeneratorService.class);
 
     private final ChatClient chatClient;
+    private final Map<String, String> configuration;
     boolean loadImage;
 
     @Value("classpath:/movie-pitch-prompt-multi-modal.st")
     private Resource moviePromptRes;
 
     public ChatClientPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder,
-                                           @Qualifier("pitchServiceLoadImages") boolean loadImage) {
+                                           @Qualifier("pitchServiceLoadImages") boolean loadImage,
+                                           @Qualifier("pitchServiceLLMConfiguration") Map<String, String> configuration) {
         this.chatClient = chatClientBuilder.build();
         this.loadImage = loadImage;
+        this.configuration = configuration;
     }
 
     @Override
@@ -76,7 +80,7 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
             logger.info("Movie:" + movie);
             movie.setPitchGenerationPrompt(moviePrompt.render());
 
-            movie.setChatServiceConfiguration("Class " + chatClient.getClass());
+            movie.setChatServiceConfiguration(getConfiguration());
 
             return movie;
 
@@ -84,6 +88,16 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
             throw new RuntimeException("Pitch generator error", e);
         }
 
+    }
+
+    private String getConfiguration() {
+
+        return "Configuration:\n" +
+                this.configuration
+                        .entrySet()
+                        .stream()
+                        .map(entry -> "* " + entry.getKey() + ": " + entry.getValue() + "\n")
+                        .collect(Collectors.joining());
     }
 
     private Media getMedia(String imageUrl) {

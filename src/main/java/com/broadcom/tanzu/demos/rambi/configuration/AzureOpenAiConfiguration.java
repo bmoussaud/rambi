@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import java.util.Map;
+
 @Configuration
 @ConditionalOnProperty(prefix = "rambi", name = "chatProvider", havingValue = "azure")
 public class AzureOpenAiConfiguration {
@@ -20,5 +22,13 @@ public class AzureOpenAiConfiguration {
     @Bean
     boolean pitchServiceLoadImages() {
         return false;
+    }
+
+    @Bean
+    Map<String, String> pitchServiceLLMConfiguration(AzureOpenAiChatModel model) {
+        return Map.of("model", "Azure",
+                "provider", "OpenAI",
+                "deployment", model.getDefaultOptions().getDeploymentName()
+        );
     }
 }
