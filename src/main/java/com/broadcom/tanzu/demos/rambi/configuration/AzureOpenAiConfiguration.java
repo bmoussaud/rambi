@@ -16,4 +16,9 @@ public class AzureOpenAiConfiguration {
     ChatClient.Builder myChatClientProvider(AzureOpenAiChatModel model) {
         return ChatClient.builder(model);
     }
+
+    @Bean
+    boolean pitchServiceLoadImages() {
+        return false;
+    }
 }

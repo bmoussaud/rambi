@@ -1,19 +1,21 @@
 package com.broadcom.tanzu.demos.rambi;
 
-import java.net.URI;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.Media;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
+
+import java.net.URI;
+import java.util.Map;
 
 @Service
 @Profile("!fake")
@@ -22,24 +24,22 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
     private static final Logger logger = LoggerFactory.getLogger(ChatClientPitchGeneratorService.class);
 
     private final ChatClient chatClient;
+    boolean loadImage;
 
     @Value("classpath:/movie-pitch-prompt-multi-modal.st")
     private Resource moviePromptRes;
 
-    public ChatClientPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder) {
+    public ChatClientPitchGeneratorService(@Qualifier("myChatClientProvider") ChatClient.Builder chatClientBuilder,
+                                           @Qualifier("pitchServiceLoadImages") boolean loadImage) {
         this.chatClient = chatClientBuilder.build();
-    }
-
-    record MovieDescription(
-            String movie1PosterDescription,
-            String movie2PosterDescription) {
+        this.loadImage = loadImage;
     }
 
     @Override
     public GeneratedRambiMovie generate(RambiMovie first, RambiMovie second, String genre) {
 
         try {
-            
+
             logger.info("generate new pitch based on move1:{} and movie2:{} with genre:{}", first, second, genre);
 
             logger.info("movie 1 poster is {} ", first.getPosterUrl());
@@ -47,13 +47,8 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
 
             MovieDescription moviePosterDescription = chatClient.prompt()
                     .user(p -> {
-                        try {
-                            p.text("Explain what do you see on these two movie posters")
-                                    .media(MimeTypeUtils.IMAGE_PNG, new URI(first.getPosterUrl()).toURL())
-                                    .media(MimeTypeUtils.IMAGE_PNG, new URI(second.getPosterUrl()).toURL());
-                        } catch (Exception e) {
-                            throw new RuntimeException("URI error explain", e);
-                        }
+                        p.text("Explain what do you see on these two movie posters")
+                                .media(getMedia(first.getPosterUrl()), getMedia(second.getPosterUrl()));
                     })
                     .call()
                     .entity(MovieDescription.class);
@@ -89,6 +84,25 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
             throw new RuntimeException("Pitch generator error", e);
         }
 
+    }
+
+    private Media getMedia(String imageUrl) {
+        try {
+            var url = new URI(imageUrl).toURL();
+            if (loadImage) {
+                logger.info("load {}...", imageUrl);
+                return new Media(MimeTypeUtils.IMAGE_PNG, new UrlResource(url));
+            } else {
+                return new Media(MimeTypeUtils.IMAGE_PNG, url);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    record MovieDescription(
+            String movie1PosterDescription,
+            String movie2PosterDescription) {
     }
 
 }
