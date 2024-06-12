@@ -77,11 +77,12 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
                     .user(p -> p.text(moviePromptRes).params(model)).call()
                     .entity(GeneratedRambiMovie.class);
 
-            logger.info("Movie:" + movie);
-            movie.setPitchGenerationPrompt(moviePrompt.render());
 
-            movie.setChatServiceConfiguration(getConfiguration());
+            GeneratedMovieMetadata metadata = movie.getMetadata();
+            metadata.setPitchGenerationPrompt(moviePrompt.render());
+            metadata.setChatServiceConfiguration(getConfiguration());
 
+            logger.info("Pitch Movie: {}", movie);
             return movie;
 
         } catch (Exception e) {

@@ -4,13 +4,11 @@ import com.azure.core.exception.HttpResponseException;
 import com.broadcom.tanzu.demos.rambi.configuration.RambiConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.azure.openai.AzureOpenAiImageModel;
 import org.springframework.ai.azure.openai.metadata.AzureOpenAiImageGenerationMetadata;
 import org.springframework.ai.chat.prompt.PromptTemplate;
-
 import org.springframework.ai.image.ImageGeneration;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,16 +37,19 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
     @Override
     public GeneratedRambiMovie generate(GeneratedRambiMovie movie) {
         logger.info("Generate Image using AI {}", movie);
+        GeneratedMovieMetadata generatedMovieMetadata = movie.getMetadata();
+
         PromptTemplate moviePrompt = new PromptTemplate(moviePromptRes, Map.of(
                 "genre", movie.getGenre().toLowerCase(),
                 "title", movie.getTitle(),
                 "description", movie.getPosterDescription()));
         logger.info(moviePrompt.render());
         var prompt = new ImagePrompt(moviePrompt.render());
-        movie.setImageGenerationPrompt(moviePrompt.render());
+        generatedMovieMetadata.setImageGenerationPrompt(moviePrompt.render());
         if (configuration.failfast()) {
             movie.setPosterUrl("/images/fail_fast.png");
-            movie.setRevisedImageGenerationPrompt("```No Revised Prompt```");
+            generatedMovieMetadata.setRevisedImageGenerationPrompt("```No Revised Prompt```");
+            logger.info("GenImage Movie FF: {}", movie);
             return movie;
         }
 
@@ -64,13 +65,13 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
                         .getMetadata();
                 var revisedPrompt = imageGenerationMetadata.getRevisedPrompt();
                 logger.info("Revised Prompt {}", revisedPrompt);
-                movie.setRevisedImageGenerationPrompt("```" + revisedPrompt + "```");
+                generatedMovieMetadata.setRevisedImageGenerationPrompt("```" + revisedPrompt + "```");
             }
             return movie;
         } catch (Exception e) {
             logger.error("Azure image generation error", e);
             logger.error("Azure image generation error Message [{}]", e.getMessage());
-            movie.setRevisedImageGenerationPrompt("```Error:" + e.getMessage() + "```");
+            generatedMovieMetadata.setRevisedImageGenerationPrompt("```Error:" + e.getMessage() + "```");
             movie.setPosterUrl("/images/generated_error_0.png");
             if (e instanceof HttpResponseException) {
                 HttpResponseException ere = (HttpResponseException) e;
@@ -93,13 +94,13 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
                     sb.append("* violence: " + contentFilterResult2String(results.violence())).append('\n');
 
                     logger.error("error message {}", message);
-                    movie.setRevisedImageGenerationPrompt(message + "\n" + sb.toString());
+                    generatedMovieMetadata.setRevisedImageGenerationPrompt(message + "\n" + sb.toString());
 
                 } catch (Exception e1) {
                     logger.error("Azure image generation error Decoding Exception", e1);
                 }
             }
-
+            logger.info("GenImage Movie: {}", movie);
             return movie;
         }
     }

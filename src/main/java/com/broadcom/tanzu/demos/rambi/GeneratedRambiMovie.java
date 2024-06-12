@@ -7,19 +7,11 @@ public class GeneratedRambiMovie extends RambiMovie {
     @JsonIgnore
     private String describeRefMainPoster;
 
-    @JsonIgnore
-    private String pitchGenerationPrompt;
-
-    @JsonIgnore
-    private String imageGenerationPrompt;
-
-    @JsonIgnore
-    private String revisedImageGenerationPrompt;
 
     private String posterDescription;
 
     @JsonIgnore
-    private String chatServiceConfiguration;
+    private GeneratedMovieMetadata metadata;
 
     public GeneratedRambiMovie() {
     }
@@ -36,30 +28,6 @@ public class GeneratedRambiMovie extends RambiMovie {
         this.describeRefMainPoster = describeRefMainPoster;
     }
 
-    public String getPitchGenerationPrompt() {
-        return pitchGenerationPrompt;
-    }
-
-    public void setPitchGenerationPrompt(String pitchGenerationPrompt) {
-        this.pitchGenerationPrompt = pitchGenerationPrompt;
-    }
-
-    public String getImageGenerationPrompt() {
-        return imageGenerationPrompt;
-    }
-
-    public void setImageGenerationPrompt(String imageGenerationPrompt) {
-        this.imageGenerationPrompt = imageGenerationPrompt;
-    }
-
-    public String getRevisedImageGenerationPrompt() {
-        return revisedImageGenerationPrompt;
-    }
-
-    public void setRevisedImageGenerationPrompt(String revisedImageGenerationPrompt) {
-        this.revisedImageGenerationPrompt = revisedImageGenerationPrompt;
-    }
-
     public String getPosterDescription() {
         return posterDescription;
     }
@@ -68,14 +36,20 @@ public class GeneratedRambiMovie extends RambiMovie {
         this.posterDescription = posterDescription;
     }
 
-    public String getChatServiceConfiguration() {
-        return chatServiceConfiguration;
+    public GeneratedMovieMetadata getMetadata() {
+        if (metadata == null) {
+            metadata = new GeneratedMovieMetadata();
+        }
+        return metadata;
     }
 
-    public void setChatServiceConfiguration(String chatServiceConfiguration) {
-        this.chatServiceConfiguration = chatServiceConfiguration;
+    @Override
+    public String toString() {
+        return "GeneratedRambiMovie{" +
+                "describeRefMainPoster='" + describeRefMainPoster + '\'' +
+                ", posterDescription='" + posterDescription + '\'' +
+                ", metadata=" + metadata +
+                '}';
     }
-
-
-
 }
+

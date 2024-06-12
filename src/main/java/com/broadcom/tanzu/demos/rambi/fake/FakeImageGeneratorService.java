@@ -12,8 +12,8 @@ public class FakeImageGeneratorService implements ImageGeneratorService {
     @Override
     public GeneratedRambiMovie generate(GeneratedRambiMovie movie) {
         movie.setPosterUrl("/images/fake_00.png");
-        movie.setImageGenerationPrompt("```FAKE IMAGE PROMPT```");        
-        movie.setRevisedImageGenerationPrompt("```No Revised Prompt```");
+        movie.getMetadata().setImageGenerationPrompt("```FAKE IMAGE PROMPT```");
+        movie.getMetadata().setRevisedImageGenerationPrompt("```No Revised Prompt```");
         return movie;
     }
 

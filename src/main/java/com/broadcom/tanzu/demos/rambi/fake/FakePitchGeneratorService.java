@@ -45,7 +45,7 @@ public class FakePitchGeneratorService implements PitchGeneratorService {
                 "Genre:" + genre
                         + ": Bambi and his forest friends Thumper and Flower are excited for Bambi's upcoming coronation as prince of the forest. However, when a group of rowdy animals from a neighboring forest threaten to disrupt the ceremony, Bambi must turn to an unlikely ally for help: Rambo, a retired military-trained ram who has been hiding out in the forest. Together, they must train the forest animals in hilarious and unconventional ways to defend themselves against the intruders, all while navigating the challenges of growing up in the forest.");
 
-        m.setPitchGenerationPrompt(moviePrompt.render());
+        m.getMetadata().setPitchGenerationPrompt(moviePrompt.render());
         return m;
     }
 }

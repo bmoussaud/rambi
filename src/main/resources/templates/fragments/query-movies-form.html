@@ -5,7 +5,7 @@
                 <div class="row align-items-center">
                     <div class="col">                                            
                         <div class="form-group">
-                            <label for="movie1Title">Movie 1</label>
+                            <label for="movie1">Movie 1</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col">                        
                         <div class="form-group">
-                            <label for="movie2Title">Movie 2</label>                            
+                            <label for="movie2">Movie 2</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
@@ -70,7 +70,7 @@
                                 <h5 class="card-title" th:text="*{movie2?.title}"/>  
                                 <input type="hidden" th:field="*{movie2.posterUrl}" id="movie2Poster">
                                         
-                                <input type="hidden" th:field="*{movie2.title}" id="movie2Title">                                                                    
+                                <input type="hidden" th:field="*{movie2.title}" id="movie2Title">
                                 <input type="hidden" th:field="*{movie2.plot}" id="movie2Plot">                                                                                                
                                 <p class="card-text" th:text="*{movie2?.plot}"/>
                                 
@@ -108,8 +108,8 @@
                             <div class="card-body" id="pitch-prompt">                               
                                 <h5 class="card-title">Pitch Generation Prompt</h5>
                                 <p class="card-text">
-                                    <md-block th:text="*{generatedMovie?.pitchGenerationPrompt}"/>      
-                                    <md-block th:text="*{generatedMovie?.chatServiceConfiguration}"/>                                    
+                                    <md-block th:text="*{generatedMovie?.metadata?.pitchGenerationPrompt}"/>
+                                    <md-block th:text="*{generatedMovie?.metadata?.chatServiceConfiguration}"/>
                                 </p>
                             </div>
                         </div>                        
@@ -121,7 +121,7 @@
                             <div class="card-body">                               
                                 <h5 class="card-title">Image Generation Prompt</h5>
                                 <p class="card-text">                                    
-                                    <md-block th:text="*{generatedMovie?.imageGenerationPrompt}"/>         
+                                    <md-block th:text="*{generatedMovie?.metadata?.imageGenerationPrompt}"/>
                                 </p>
                             </div>
                         </div>                                            
@@ -132,7 +132,7 @@
                             <div class="card-body">                               
                                 <h5 class="card-title">Revised Image Generation Prompt</h5>
                                 <p class="card-text">
-                                    <md-block th:text="*{generatedMovie?.revisedImageGenerationPrompt}"/>                                       
+                                    <md-block th:text="*{generatedMovie?.metadata?.revisedImageGenerationPrompt}"/>
                                 </p>
                             </div>
                         </div>                                            
