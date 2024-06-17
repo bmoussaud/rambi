@@ -20,7 +20,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.autoconfigure.azure.openai.AzureOpenAiAutoConfiguration;
 import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +42,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "spring.shell.script.enabled=false"
 })
 @Testcontainers
-@EnableAutoConfiguration(exclude = {AzureOpenAiAutoConfiguration.class, PgVectorStoreAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {PgVectorStoreAutoConfiguration.class})
 class MovieDatasetReaderTests {
     @Container
     @ServiceConnection
