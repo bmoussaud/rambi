@@ -19,19 +19,20 @@ package com.broadcom.tanzu.demos.rambi;
 import com.broadcom.tanzu.demos.rambi.configuration.RambiConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 
-@SpringBootApplication(exclude = { PgVectorStoreAutoConfiguration.class })
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableConfigurationProperties({ RambiConfiguration.class })
 public class Application {
-
+        
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Bean
