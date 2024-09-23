@@ -48,7 +48,8 @@ public class ChatClientPitchGeneratorService implements PitchGeneratorService {
 
             logger.info("movie 1 poster is {} ", first.getPosterUrl());
             logger.info("movie 2 poster is {} ", second.getPosterUrl());
-
+            
+            logger.info("Explain what do you see on these two movie posters");
             MovieDescription moviePosterDescription = chatClient.prompt()
                     .user(p -> {
                         p.text("Explain what do you see on these two movie posters")

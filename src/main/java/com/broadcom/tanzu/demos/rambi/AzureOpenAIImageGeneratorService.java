@@ -36,14 +36,14 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
 
     @Override
     public GeneratedRambiMovie generate(GeneratedRambiMovie movie) {
-        logger.info("Generate Image using AI {}", movie);
+        logger.info("Generate Image using AI");
         GeneratedMovieMetadata generatedMovieMetadata = movie.getMetadata();
 
         PromptTemplate moviePrompt = new PromptTemplate(moviePromptRes, Map.of(
                 "genre", movie.getGenre().toLowerCase(),
                 "title", movie.getTitle(),
                 "description", movie.getPosterDescription()));
-        logger.info(moviePrompt.render());
+        logger.info("prompt is {}", moviePrompt.render());
         var prompt = new ImagePrompt(moviePrompt.render());
         generatedMovieMetadata.setImageGenerationPrompt(moviePrompt.render());
         if (configuration.failfast()) {
@@ -74,30 +74,36 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
             generatedMovieMetadata.setRevisedImageGenerationPrompt("```Error:" + e.getMessage() + "```");
             movie.setPosterUrl("/images/generated_error_0.png");
             if (e instanceof HttpResponseException) {
-                HttpResponseException ere = (HttpResponseException) e;
-                Object o = ere.getValue();
+                HttpResponseException httpResponseException = (HttpResponseException) e;
+                Object errorValue = httpResponseException.getValue();
                 ObjectMapper objectMapper = new ObjectMapper();
+                
                 try {
                     // Convert Map to JSON string
-                    String jsonString = objectMapper.writeValueAsString(o);
-                    // Deserialize JSON string to record
+                    String jsonString = objectMapper.writeValueAsString(errorValue);
+                    // Deserialize JSON string to ErrorResponse object
                     ErrorResponse errorResponse = objectMapper.readValue(jsonString, ErrorResponse.class);
-                    var message = "```" + errorResponse.error.code() + ":" + errorResponse.error.message() + "```"
-                            + "\n" + "\n" + "\n" + "\n" +
-                            "```" + errorResponse.error.innerError.revisedPrompt() + "```";
-                    var results = errorResponse.error.innerError.contentFilterResults();
-                    StringBuffer sb = new StringBuffer();
-                    sb.append("* hate: " + contentFilterResult2String(results.hate())).append('\n');
-                    sb.append("* profanity: " + contentFilterResult2String(results.profanity())).append('\n');
-                    sb.append("* self_harm: " + contentFilterResult2String(results.self_harm())).append('\n');
-                    sb.append("* sexual: " + contentFilterResult2String(results.sexual())).append('\n');
-                    sb.append("* violence: " + contentFilterResult2String(results.violence())).append('\n');
-
+                
+                    String message = "```" + errorResponse.error.code() + ":" + errorResponse.error.message() + "```" + "\n\n\n\n" + "```";
+                    StringBuilder sb = new StringBuilder();
+                
+                    if (errorResponse.error.innerError != null) {
+                        message += " " + errorResponse.error.innerError.revisedPrompt();
+                        var results = errorResponse.error.innerError.contentFilterResults();
+                
+                        sb.append("* hate: ").append(contentFilterResult2String(results.hate())).append('\n');
+                        sb.append("* profanity: ").append(contentFilterResult2String(results.profanity())).append('\n');
+                        sb.append("* self_harm: ").append(contentFilterResult2String(results.self_harm())).append('\n');
+                        sb.append("* sexual: ").append(contentFilterResult2String(results.sexual())).append('\n');
+                        sb.append("* violence: ").append(contentFilterResult2String(results.violence())).append('\n');
+                        sb.append("* jailbreak: ").append(contentFilterResult2String(results.jailbreak())).append('\n');
+                    }
+                
                     logger.error("error message {}", message);
                     generatedMovieMetadata.setRevisedImageGenerationPrompt(message + "\n" + sb.toString());
-
-                } catch (Exception e1) {
-                    logger.error("Azure image generation error Decoding Exception", e1);
+                
+                } catch (Exception ex) {
+                    logger.error("Azure image generation error Decoding Exception", ex);
                 }
             }
             logger.info("GenImage Movie: {}", movie);
@@ -120,7 +126,7 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
 
     public record ContentFilterResult(
             boolean filtered,
-            String severity,
+            //String severity,
             boolean detected // for profanity's "detected" field
     ) {
     }
@@ -130,7 +136,8 @@ public class AzureOpenAIImageGeneratorService implements ImageGeneratorService {
             ContentFilterResult profanity,
             ContentFilterResult self_harm,
             ContentFilterResult sexual,
-            ContentFilterResult violence) {
+            ContentFilterResult violence,
+            ContentFilterResult jailbreak) {
     }
 
     public record InnerError(

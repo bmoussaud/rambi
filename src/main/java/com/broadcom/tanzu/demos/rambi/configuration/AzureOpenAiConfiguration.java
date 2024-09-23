@@ -1,6 +1,7 @@
 package com.broadcom.tanzu.demos.rambi.configuration;
 
 import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
+import org.springframework.ai.azure.openai.AzureOpenAiImageModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -25,10 +26,12 @@ public class AzureOpenAiConfiguration {
     }
 
     @Bean
-    Map<String, String> pitchServiceLLMConfiguration(AzureOpenAiChatModel model) {
+    Map<String, String> pitchServiceLLMConfiguration(AzureOpenAiChatModel chatModel, AzureOpenAiImageModel imageModel) {
         return Map.of("model", "Azure",
                 "provider", "OpenAI",
-                "deployment", model.getDefaultOptions().getDeploymentName()
+                "chatDeployment", chatModel.getDefaultOptions().getDeploymentName(),
+                "imageDeployment", imageModel.getDefaultOptions().getDeploymentName()
         );
     }
+
 }

@@ -33,6 +33,12 @@ curl -X POST http://localhost:8080/generate/image -H 'Content-Type: application/
 
 mvn spring-boot:run -Dspring-boot.run.profiles=fake
 
+# Config
+Create a `.env` file with the following entries
+* AZURE_OPENAI_ENDPOINT
+* AZURE_OPENAI_API_KEY
+* TMDB_API_KEY 
+
 ## Dataset
 
 https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies

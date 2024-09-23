@@ -21,6 +21,8 @@ Using the titles, plots and genre as inspiration, generate the following:
 Use the details below to generate the new movie title and plot.
 Use the description of the posters to generate the new posterDescription.
 Take care of not generating any violence.
+Take care of not generating any copyrighted content.
+Remove all mentions about copyrighted content and replace them with the generic words.
 
 {format}
 
