@@ -26,8 +26,8 @@ public class UIController {
     @GetMapping(value = "/")
     public String index(Model model) {
         RambiModel rambiModel = new RambiModel();
-        rambiModel.setMovie1Title("Barbie");
-        rambiModel.setMovie2Title("Back to the Future");
+        rambiModel.setMovie1Title("The usual suspects");
+        rambiModel.setMovie2Title("Bambi");
         model.addAttribute("rambiModel", rambiModel);
         logger.info("rambiModel: {}", rambiModel);
         return "/views/movie-form";
