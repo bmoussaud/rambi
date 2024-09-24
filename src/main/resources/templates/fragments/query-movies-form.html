@@ -1,4 +1,4 @@
-<section id="movies">
+<section id="movies" xmlns:th="http://www.w3.org/1999/xhtml">
     <form action="#" th:object="${rambiModel}" method="POST">
         <div id="query-movies-form">
             <div class="container" >   
@@ -81,8 +81,8 @@
 
                 <div class="row" id="genre">
                     <div class="col-8">     
-                        <select class="form-select" aria-label="Genre" th:field="*{genre}">
-                            <option th:each="g:*{defaultGenres}" th:value="${g}" th:text="${g}" value="*{genre}"/>                                                          
+                        <select class="form-select" aria-label="Genre" th:field="*{genre}" >
+                            <option th:each="g:*{defaultGenres}" th:value="${g}" th:text="${g}"/>
                         </select>
                     </div>
                     <div class="col-4" id="submit">

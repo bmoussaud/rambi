@@ -10,7 +10,7 @@ public class RambiModel {
     RambiMovie movie1;
     RambiMovie movie2;
 
-    String genre = "Comedy";
+    String genre = "Fantasy";
 
     RambiMovie generatedMovie;
 

@@ -28,6 +28,7 @@ public class UIController {
         RambiModel rambiModel = new RambiModel();
         rambiModel.setMovie1Title("The usual suspects");
         rambiModel.setMovie2Title("Bambi");
+
         model.addAttribute("rambiModel", rambiModel);
         logger.info("rambiModel: {}", rambiModel);
         return "/views/movie-form";
@@ -41,9 +42,7 @@ public class UIController {
         RambiMovie movie2 = movieService.search(rambiModel.getMovie2Title());
         rambiModel.setMovie1(movie1);
         rambiModel.setMovie2(movie2);
-
         logger.info("rambiModel: {}", rambiModel);
-
         model.addAttribute("rambiModel", rambiModel);
         return "/fragments/query-movies-form.html";
     }
