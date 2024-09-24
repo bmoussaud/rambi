@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi.configuration;
+package org.moussaud.demos.moviegenerator.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

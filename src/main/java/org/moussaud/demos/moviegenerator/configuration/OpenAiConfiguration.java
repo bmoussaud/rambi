@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi.configuration;
+package org.moussaud.demos.moviegenerator.configuration;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;

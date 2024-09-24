@@ -1,12 +1,12 @@
-package org.moussaud.demos.rambi.fake;
+package org.moussaud.demos.moviegenerator.fake;
 
-import org.moussaud.demos.rambi.PitchGeneratorService;
-import org.moussaud.demos.rambi.GeneratedRambiMovie;
-import org.moussaud.demos.rambi.RambiMovie;
+import org.moussaud.demos.moviegenerator.PitchGeneratorService;
+import org.moussaud.demos.moviegenerator.GeneratedRambiMovie;
+import org.moussaud.demos.moviegenerator.RambiMovie;
 
 import java.util.Map;
 
-import org.moussaud.demos.rambi.ChatClientPitchGeneratorService;
+import org.moussaud.demos.moviegenerator.ChatClientPitchGeneratorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.prompt.PromptTemplate;

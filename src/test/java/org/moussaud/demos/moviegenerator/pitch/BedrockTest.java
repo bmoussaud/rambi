@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi.pitch;
+package org.moussaud.demos.moviegenerator.pitch;
 
 
 import org.json.JSONObject;

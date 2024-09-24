@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi;
+package org.moussaud.demos.moviegenerator;
 
 import java.util.List;
 

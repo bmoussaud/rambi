@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi.configuration;
+package org.moussaud.demos.moviegenerator.configuration;
 
 import org.springframework.ai.bedrock.anthropic3.Anthropic3ChatOptions;
 import org.springframework.ai.bedrock.anthropic3.BedrockAnthropic3ChatModel;

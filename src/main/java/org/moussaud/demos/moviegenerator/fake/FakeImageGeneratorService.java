@@ -1,7 +1,7 @@
-package org.moussaud.demos.rambi.fake;
+package org.moussaud.demos.moviegenerator.fake;
 
-import org.moussaud.demos.rambi.GeneratedRambiMovie;
-import org.moussaud.demos.rambi.ImageGeneratorService;
+import org.moussaud.demos.moviegenerator.GeneratedRambiMovie;
+import org.moussaud.demos.moviegenerator.ImageGeneratorService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package org.moussaud.demos.rambi;
+package org.moussaud.demos.moviegenerator;
 
-import org.moussaud.demos.rambi.configuration.RambiConfiguration;
+import org.moussaud.demos.moviegenerator.configuration.RambiConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

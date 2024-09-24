@@ -1,8 +1,8 @@
-package org.moussaud.demos.rambi;
+package org.moussaud.demos.moviegenerator;
 
 import com.azure.core.exception.HttpResponseException;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.moussaud.demos.rambi.configuration.RambiConfiguration;
+import org.moussaud.demos.moviegenerator.configuration.RambiConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

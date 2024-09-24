@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi.configuration;
+package org.moussaud.demos.moviegenerator.configuration;
 
 import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.azure.openai.AzureOpenAiImageModel;

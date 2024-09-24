@@ -9,11 +9,11 @@
         <version>3.3.3</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.moussaud.demos.rambi</groupId>
-    <artifactId>rambi</artifactId>
+    <groupId>org.moussaud.demos.springai</groupId>
+    <artifactId>moviegenerator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Rambi</name>
-    <description>Rambi Project</description>
+    <name>Movie Generator</name>
+    <description>Spring AI Movie Generator</description>
 
     <properties>
         <java.version>17</java.version>

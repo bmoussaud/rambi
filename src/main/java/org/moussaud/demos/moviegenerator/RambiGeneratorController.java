@@ -1,4 +1,4 @@
-package org.moussaud.demos.rambi;
+package org.moussaud.demos.moviegenerator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
