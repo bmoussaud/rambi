@@ -28,7 +28,7 @@
 2024-03-28T12:39:57.097+01:00  INFO 101 --- [rambi] [  restartedMain] c.b.tanzu.demos.rambi.Application        : Starting Application using Java 21.0.2 with PID 101 (/Users/bmoussaud/workspaces/alexandreroman/rambi/target/classes started by bmoussaud in /Users/bmoussaud/workspaces/alexandreroman/rambi)
 2024-03-28T12:39:57.101+01:00 DEBUG 101 --- [rambi] [  restartedMain] c.b.tanzu.demos.rambi.Application        : Running with Spring Boot v3.2.4, Spring v6.1.5
 2024-03-28T12:39:57.102+01:00  INFO 101 --- [rambi] [  restartedMain] c.b.tanzu.demos.rambi.Application        : No active profile set, falling back to 1 default profile: "default"
-2024-03-28T12:39:57.102+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.SpringApplication               : Loading source class com.broadcom.tanzu.demos.rambi.Application
+2024-03-28T12:39:57.102+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.SpringApplication               : Loading source class org.moussaud.demos.rambi.Application
 2024-03-28T12:39:57.134+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : Matching URLs for reloading : [file:/Users/bmoussaud/workspaces/alexandreroman/rambi/target/classes/]
 2024-03-28T12:39:57.134+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.b.d.settings.DevToolsSettings        : Included patterns for restart : []
 2024-03-28T12:39:57.134+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.b.d.settings.DevToolsSettings        : Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
@@ -94,7 +94,7 @@ org.apache.tomcat.jni.LibraryNotFoundError: Can't load library: /Users/bmoussaud
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
-	at com.broadcom.tanzu.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
+	at org.moussaud.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.4.jar:3.2.4]
@@ -159,7 +159,7 @@ java.lang.NoSuchMethodException: java.lang.foreign.MemorySegment.getString(long)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
-	at com.broadcom.tanzu.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
+	at org.moussaud.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.4.jar:3.2.4]
@@ -289,7 +289,7 @@ java.lang.NoSuchMethodException: java.lang.foreign.MemorySegment.getString(long)
 2024-03-28T12:39:58.104+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.apache.catalina.loader.WebappLoader    : Stopping this Loader
 2024-03-28T12:39:58.108+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.devtools.restart.Restarter      : Creating new Restarter for thread Thread[#1,main,5,main]
 2024-03-28T12:39:58.109+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.devtools.restart.Restarter      : Immediately restarting application
-2024-03-28T12:39:58.109+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.devtools.restart.Restarter      : Starting application com.broadcom.tanzu.demos.rambi.Application with URLs [file:/Users/bmoussaud/workspaces/alexandreroman/rambi/target/classes/]
+2024-03-28T12:39:58.109+01:00 DEBUG 101 --- [rambi] [  restartedMain] o.s.boot.devtools.restart.Restarter      : Starting application org.moussaud.demos.rambi.Application with URLs [file:/Users/bmoussaud/workspaces/alexandreroman/rambi/target/classes/]
 2024-03-28T12:39:58.124+01:00 DEBUG 101 --- [rambi] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
@@ -2260,7 +2260,7 @@ org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying b
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
-	at com.broadcom.tanzu.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
+	at org.moussaud.demos.rambi.Application.main(Application.java:27) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.4.jar:3.2.4]
