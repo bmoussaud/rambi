@@ -16,7 +16,7 @@
     <description>Rambi Project</description>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
         <spring-ai.version>1.0.0-M2</spring-ai.version>
     </properties>
 
